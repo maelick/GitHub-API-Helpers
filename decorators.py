@@ -111,3 +111,33 @@ class RedisBackendCacheDecorator(object):
                 self.store.set(url+'.response', pickle.dumps(r))
             return r
         return wrapped_f
+
+
+
+class MultipleAPIKeysDecorator(object):
+    """
+    Add an API key to perform the requests. If a key has a 
+    Ratelimit-Remaining of 0, switch to the next key. 
+    Raise IndexError if no more keys are available.
+    """
+
+    def __init__(self, keys):
+        self.keys = keys
+        self.current_key = 0
+
+    def __call__(self, f):
+        @functools.wraps(f)
+        def wrapped_f(url, *args, **kwargs):
+            while True:
+                headers = kwargs.get('headers', {})
+                try:
+                    headers['Authorization'] = 'token '+self.keys[self.current_key]
+                except IndexError as e:
+                    raise IndexError('No more API key can be used')
+                kwargs['headers'] = headers
+                r = f(url, *args, **kwargs)
+                if r.status_code == 403 and r.headers['X-RateLimit-Remaining'] == '0':
+                    self.current_key += 1
+                else:
+                    return r
+        return wrapped_f
