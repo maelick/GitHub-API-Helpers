@@ -14,7 +14,7 @@ This module provides decorators that are intented to be used with `requests.get`
 This decorator prepend the url given to `requests.get` by the value of `prepended_url`. Should be used after every other decorator. 
 
 ```python
-consumer = decorators.prepend_url('https://api.github.com)(requests.get)
+consumer = decorators.prepend_url('https://api.github.com/')(requests.get)
 ```
 
 ##### `InMemoryCacheDecorator(cache=None)`
