@@ -35,3 +35,10 @@ The constructor will pass every provided keyword argument to `redis.StrictRedis`
 consumer = decorators.RedisBackendCacheDecorator(host='10.102.170.77', db=5)(requests.get)
 ```
 Consult stderr to see if a cached value is used, or if the cache is updated.
+
+##### `MultipleAPIKeysDecorator(keys)`
+This decorator populate the header *Authorization* with an API key, allowing more requests by hour. You should provide a list of API keys to this decorator. If a key has a Ratelimit-remaining of 0, then the next key is used, and so on, until no more key is available (in this case, an `IndexError` is raised).
+
+```python
+consumer = decorators.MultipleAPIKeysDecorator(['YOUR_API_KEY_1', 'YOUR_API_KEY_2'])(requests.get)
+```
