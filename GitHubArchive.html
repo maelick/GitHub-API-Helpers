@@ -1690,6 +1690,16 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Loading-data-from-GitHub-Archive">Loading data from GitHub Archive<a class="anchor-link" href="#Loading-data-from-GitHub-Archive">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>We&#39;re going to use <a href="http://www.githubarchive.com">GitHubArchive</a> to retrieve a lot of data from GitHub activity stream.
 GitHubArchive provides several file whose names are <a href="http://data.githubarchive.org/{year}-{month}-{day}-{hour}.json.gz">http://data.githubarchive.org/{year}-{month}-{day}-{hour}.json.gz</a> that we are going to retrieve. GitHubArchive provides those files since 2011-12-02, but the file format has changed at the beginning of 2015.</p>
 <p>We first generate a list of links we are interested in, say from 2013-01-01 to 2013-01-05 excluded.</p>
@@ -1762,7 +1772,11 @@ In&nbsp;[]:
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">content</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span> 
+            <span class="c"># Anything related to JSON, like UnicodeError, ValueError, etc. </span>
+            <span class="k">pass</span>  <span class="c"># ... for sure, it&#39;s a bad idea...</span>
     <span class="k">return</span> <span class="n">content</span>
         
 </pre></div>
@@ -1806,6 +1820,124 @@ In&nbsp;[]:
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This content can then be put in a (relational or not) database. An event looks like:</p>
+<pre><code>{u&#39;actor&#39;: u&#39;lastr2d2&#39;,
+ u&#39;actor_attributes&#39;: {u&#39;email&#39;: u&#39;lastr2d2@gmail.com&#39;,
+  u&#39;gravatar_id&#39;: u&#39;2a8a2ef556894cb1b6945a8c471bc4e9&#39;,
+  u&#39;login&#39;: u&#39;lastr2d2&#39;,
+  u&#39;name&#39;: u&#39;Wayne Wang&#39;,
+  u&#39;type&#39;: u&#39;User&#39;},
+ u&#39;created_at&#39;: u&#39;2014-01-01T01:01:58-08:00&#39;,
+ u&#39;payload&#39;: {u&#39;head&#39;: u&#39;afa9b3ac304d6ab92fd7689d1604f240b8f4ae38&#39;,
+  u&#39;ref&#39;: u&#39;refs/heads/master&#39;,
+  u&#39;shas&#39;: [[u&#39;afa9b3ac304d6ab92fd7689d1604f240b8f4ae38&#39;,
+    u&#39;lastr2d2@gmail.com&#39;,
+    u&#39;updated minifized version&#39;,
+    u&#39;Wayne Wang&#39;,
+    True]],
+  u&#39;size&#39;: 1},
+ u&#39;public&#39;: True,
+ u&#39;repository&#39;: {u&#39;created_at&#39;: u&#39;2013-11-19T00:01:51-08:00&#39;,
+  u&#39;description&#39;: u&#39;My userscript for douban.fm&#39;,
+  u&#39;fork&#39;: False,
+  u&#39;forks&#39;: 0,
+  u&#39;has_downloads&#39;: True,
+  u&#39;has_issues&#39;: True,
+  u&#39;has_wiki&#39;: True,
+  u&#39;id&#39;: 14517966,
+  u&#39;language&#39;: u&#39;JavaScript&#39;,
+  u&#39;master_branch&#39;: u&#39;master&#39;,
+  u&#39;name&#39;: u&#39;scripts-doubanfm&#39;,
+  u&#39;open_issues&#39;: 0,
+  u&#39;owner&#39;: u&#39;lastr2d2&#39;,
+  u&#39;private&#39;: False,
+  u&#39;pushed_at&#39;: u&#39;2014-01-01T01:01:57-08:00&#39;,
+  u&#39;size&#39;: 128,
+  u&#39;stargazers&#39;: 0,
+  u&#39;url&#39;: u&#39;https://github.com/lastr2d2/scripts-doubanfm&#39;,
+  u&#39;watchers&#39;: 0},
+ u&#39;type&#39;: u&#39;PushEvent&#39;,
+ u&#39;url&#39;: u&#39;https://github.com/lastr2d2/scripts-doubanfm/compare/ba4d721b3d...afa9b3ac30&#39;}
+</code></pre><p>Notice that <code>payload</code> has not a fixed schema. </p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Filtering-R-packages">Filtering R packages<a class="anchor-link" href="#Filtering-R-packages">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We filtered out the events (and by extension their repositories) that are related to R language. This can be easily done by filtering on <code>repository.language</code> key. With such a list of R repositories, we are interested in identifying which ones are R packages. To do this, we filtered out the repositories that contains a <strong>DESCRIPTION</strong> file at its root. </p>
+<p>If <em><em>repository</em></em> is the (full) name of the repository, then this file could possibly be retrieved from <a href="https://raw.githubusercontent.com/_repository_/master/DESCRIPTION">https://raw.githubusercontent.com/_repository_/master/DESCRIPTION</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">&#39;https://raw.githubusercontent.com/{repository}/master/DESCRIPTION&#39;</span>
+
+<span class="k">def</span> <span class="nf">get_description_file_for</span><span class="p">(</span><span class="n">repository</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Given the full name of a github repository, return the DESCRIPTION file</span>
+<span class="sd">    if it exists or None otherwhise. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">repository</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">content</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We put all the data collected from 2013 and 2014 in a MongoDB datastore. 
+Here&#39;s the result of some queries, FYI:</p>
+<pre><code>&gt; db.events.count()
+1016423
+&gt; db.repository.distinct(&#39;url&#39;).length
+121385
+&gt; db.repository.distinct(&#39;id&#39;).length
+118675
+&gt; db.repository.distinct(&#39;name&#39;).length
+43164
+</code></pre><p>Notice that, at the same time, <a href="https://github.com/search?utf8=%E2%9C%93&amp;q=language%3AR&amp;type=Repositories&amp;ref=searchresults">https://github.com/search?utf8=%E2%9C%93&amp;q=language%3AR&amp;type=Repositories&amp;ref=searchresults</a> shows 67275 repositories. This can be explained as a large majority of the 121385 repositories we have have been deleted since the events were collected.</p>
+<pre><code>&gt; db.descriptionfile.find({file: {$exists: true}}).length()
+19052
+</code></pre><p>This is, we collected and identified 19052 packages that are related to R. This includes redundant repositories, like <code>rpkg/*</code> which is an alias for <code>cran/*</code>. </p>
+</div>
+</div>
 </div>
     </div>
   </div>
