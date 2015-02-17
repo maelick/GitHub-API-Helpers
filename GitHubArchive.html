@@ -1936,6 +1936,11 @@ Here&#39;s the result of some queries, FYI:</p>
 <pre><code>&gt; db.descriptionfile.find({file: {$exists: true}}).length()
 19052
 </code></pre><p>This is, we collected and identified 19052 packages that are related to R. This includes redundant repositories, like <code>rpkg/*</code> which is an alias for <code>cran/*</code>. </p>
+<pre><code>&gt; db.descriptionfile.find({_id: { $regex: /^https:\/\/github.com\/cran/ } } ).length()
+6007
+&gt; db.descriptionfile.find({_id: { $regex: /^https:\/\/github.com\/rpkg/ } } ).length()
+4423
+</code></pre>
 </div>
 </div>
 </div>
