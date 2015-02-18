@@ -1922,8 +1922,8 @@ In&nbsp;[]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We put all the data collected from 2013 and 2014 in a MongoDB datastore. 
-Here&#39;s the result of some queries, FYI:</p>
+<p>We put all the data collected from 2013 and 2014 in a MongoDB datastore. Our MongoDB contains a collection <code>events</code> with every event from GitHub Archive related to R. We spread the data into several collections: <code>events</code> contains the raw event, <code>repository</code> contains <code>event.repository</code>, <code>payload</code> contains <code>event.payload</code>, etc. for every subdocument contained in each <code>event</code>. </p>
+<p>Here&#39;s the result of some queries, FYI:</p>
 <pre><code>&gt; db.events.count()
 1016423
 &gt; db.repository.distinct(&#39;url&#39;).length
@@ -1933,6 +1933,7 @@ Here&#39;s the result of some queries, FYI:</p>
 &gt; db.repository.distinct(&#39;name&#39;).length
 43164
 </code></pre><p>Notice that, at the same time, <a href="https://github.com/search?utf8=%E2%9C%93&amp;q=language%3AR&amp;type=Repositories&amp;ref=searchresults">https://github.com/search?utf8=%E2%9C%93&amp;q=language%3AR&amp;type=Repositories&amp;ref=searchresults</a> shows 67275 repositories. This can be explained as a large majority of the 121385 repositories we have have been deleted since the events were collected.</p>
+<p>Moreover, we added a collection <code>descriptionfile</code>. This collection contains <code>{_id: URL, file: CONTENT}</code> where <code>URL</code> is the URL of a R repository, and <code>CONTENT</code> is the content of the <em>DESCRIPTION</em> file if any. </p>
 <pre><code>&gt; db.descriptionfile.find({file: {$exists: true}}).length()
 19052
 </code></pre><p>This is, we collected and identified 19052 packages that are related to R. This includes redundant repositories, like <code>rpkg/*</code> which is an alias for <code>cran/*</code>. </p>
@@ -1943,6 +1944,69 @@ Here&#39;s the result of some queries, FYI:</p>
 </code></pre>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Identifying-R-packages-from-CRAN,-RPKG-and-the-others">Identifying R packages from CRAN, RPKG and the others<a class="anchor-link" href="#Identifying-R-packages-from-CRAN,-RPKG-and-the-others">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Say we are interested in identifying which are the R packages that are hosted by CRAN on Github:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pymongo</span>
+
+<span class="c"># Assuming we are locally running a MongoDB instance</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">()</span><span class="o">.</span><span class="n">githubarchive</span>
+
+<span class="c"># Contains 3-uples (&#39;https://github.com&#39;, OWNER_NAME, REPOSITORY_NAME)</span>
+<span class="n">packages</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s">&#39;_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">descriptionfile</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">&#39;file&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;$exists&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}},</span> <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;_id&#39;</span><span class="p">])))</span>
+
+<span class="c"># Filter CRAN, RPKG and the others</span>
+<span class="n">cran_names</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;cran&#39;</span><span class="p">,</span> <span class="n">packages</span><span class="p">))</span>
+<span class="n">rpkg_names</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;rpkg&#39;</span><span class="p">,</span> <span class="n">packages</span><span class="p">))</span>
+<span class="n">other_names</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;rpkg&#39;</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;cran&#39;</span><span class="p">,</span> <span class="n">packages</span><span class="p">))</span>
+
+<span class="c"># len(other_names) == 8643</span>
+
+<span class="n">cran_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">cran_names</span><span class="p">)</span>
+<span class="n">rpkg_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">rpkg_names</span><span class="p">)</span>
+<span class="n">other_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">other_names</span><span class="p">)</span>
+
+<span class="c"># Names that are NOT in cran_set and rpkg_set: 5068 items</span>
+<span class="n">outside_only</span> <span class="o">=</span> <span class="n">other_set</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">cran_set</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">rpkg_set</span><span class="p">)</span>
+
+<span class="c"># Names that are in cran_set: 1210 items</span>
+<span class="n">cran_too</span> <span class="o">=</span> <span class="n">other_set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">cran_set</span><span class="p">)</span>
+
+<span class="c"># Names that are in rpkg_set: 753 items</span>
+<span class="n">rpkg_too</span> <span class="o">=</span> <span class="n">other_set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">rpkg_set</span><span class="p">)</span>
+
+<span class="c"># Names from cran that are in rpkg too: 4345 items (rpkg has 4410 items!)</span>
+<span class="n">rpkg_cran</span> <span class="o">=</span> <span class="n">rpkg_set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">cran_set</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
