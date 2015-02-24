@@ -1926,11 +1926,11 @@ In&nbsp;[]:
 <p>Here&#39;s the result of some queries, FYI:</p>
 <pre><code>&gt; db.events.count()
 1016423
-&gt; db.repository.distinct(&#39;url&#39;).length
+&gt; db.events.distinct(&#39;repository.url&#39;).length
 121385
-&gt; db.repository.distinct(&#39;id&#39;).length
+&gt; db.events.distinct(&#39;repository.id&#39;).length
 118675
-&gt; db.repository.distinct(&#39;name&#39;).length
+&gt; db.events.distinct(&#39;repository.name&#39;).length
 43164
 </code></pre><p>Notice that, at the same time, <a href="https://github.com/search?utf8=%E2%9C%93&amp;q=language%3AR&amp;type=Repositories&amp;ref=searchresults">https://github.com/search?utf8=%E2%9C%93&amp;q=language%3AR&amp;type=Repositories&amp;ref=searchresults</a> shows 67275 repositories. This can be explained as a large majority of the 121385 repositories we have have been deleted since the events were collected.</p>
 <p>Moreover, we added a collection <code>descriptionfile</code>. This collection contains <code>{_id: URL, file: CONTENT}</code> where <code>URL</code> is the URL of a R repository, and <code>CONTENT</code> is the content of the <em>DESCRIPTION</em> file if any. </p>
@@ -1974,7 +1974,7 @@ In&nbsp;[]:
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">pymongo</span>
 
 <span class="c"># Assuming we are locally running a MongoDB instance</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">()</span><span class="o">.</span><span class="n">githubarchive</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">()</span><span class="o">.</span><span class="n">r</span>
 
 <span class="c"># Contains 3-uples (&#39;https://github.com&#39;, OWNER_NAME, REPOSITORY_NAME)</span>
 <span class="n">packages</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s">&#39;_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">descriptionfile</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">&#39;file&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;$exists&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}},</span> <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;_id&#39;</span><span class="p">])))</span>
