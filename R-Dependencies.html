@@ -1537,14 +1537,14 @@ init_mathjax();
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[140]:
+In&nbsp;[1]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
 
 <span class="c"># Load data from Maelick&#39;s files</span>
-<span class="n">github</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;/data/github-description.csv&#39;</span><span class="p">)</span>
-<span class="n">cran</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;/data/cran-description.csv&#39;</span><span class="p">)</span>
+<span class="n">github</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;github-description.csv&#39;</span><span class="p">)</span>
+<span class="n">cran</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;cran-description.csv&#39;</span><span class="p">)</span>
 
 <span class="c"># Drop packages belonging to &quot;cran&quot; user on GitHub</span>
 <span class="n">github</span> <span class="o">=</span> <span class="n">github</span><span class="p">[</span><span class="n">github</span><span class="p">[</span><span class="s">&#39;owner&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;cran&#39;</span><span class="p">]</span>
@@ -1557,7 +1557,7 @@ In&nbsp;[140]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[141]:
+In&nbsp;[2]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s">&#39;key == &quot;Package&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;value&#39;</span><span class="p">:</span> <span class="s">&#39;package&#39;</span><span class="p">})</span>
@@ -1572,7 +1572,7 @@ In&nbsp;[141]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[142]:
+In&nbsp;[3]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">github_pkg</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s">&#39;package&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s">&#39;key&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;value&#39;</span><span class="p">)[[</span><span class="s">&#39;Depends&#39;</span><span class="p">,</span> <span class="s">&#39;Imports&#39;</span><span class="p">]]</span>
@@ -1589,7 +1589,7 @@ In&nbsp;[142]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[143]:
+In&nbsp;[4]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">cran_pkg</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
@@ -1603,7 +1603,7 @@ In&nbsp;[143]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[143]:</div>
+    Out[4]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 <div class="output_html rendered_html">
@@ -1662,7 +1662,7 @@ In&nbsp;[143]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[144]:
+In&nbsp;[5]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="c"># Add a flag to both data frame</span>
@@ -1683,7 +1683,7 @@ In&nbsp;[144]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[145]:
+In&nbsp;[6]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">parse_packages_list</span><span class="p">(</span><span class="n">pkg_list</span><span class="p">):</span>
@@ -1697,7 +1697,7 @@ In&nbsp;[145]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[146]:
+In&nbsp;[7]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">cran_pkg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&#39;zooimage&#39;</span><span class="p">][</span><span class="s">&#39;Depends&#39;</span><span class="p">]</span>
@@ -1730,7 +1730,7 @@ Result: [&apos;R&apos;, &apos;svMisc&apos;, &apos;svDialogs&apos;, &apos;mlearni
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[147]:
+In&nbsp;[8]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="c"># Replace every NaN in Depends and Imports by an empty string (i.e. an empty list of packages)</span>
@@ -1750,7 +1750,7 @@ In&nbsp;[147]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[148]:
+In&nbsp;[9]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">pkg</span><span class="p">[</span><span class="s">&#39;cran_dep&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pkg</span><span class="p">[</span><span class="s">&#39;dependencies&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">pkg</span><span class="p">[</span><span class="s">&#39;cran&#39;</span><span class="p">]</span>
@@ -1772,7 +1772,7 @@ In&nbsp;[148]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[149]:
+In&nbsp;[10]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
@@ -1786,7 +1786,7 @@ In&nbsp;[149]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[150]:
+In&nbsp;[11]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;cran_dep&#39;</span><span class="p">,</span> <span class="s">&#39;github_dep&#39;</span><span class="p">,</span> <span class="s">&#39;both_dep&#39;</span><span class="p">,</span> <span class="s">&#39;cran_only&#39;</span><span class="p">,</span> <span class="s">&#39;github_only&#39;</span><span class="p">]</span>
@@ -1802,14 +1802,24 @@ In&nbsp;[150]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[150]:</div>
+    Out[11]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdde0393fd0&gt;
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f83c468c5d0&gt;
 </pre>
 
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stderr">
+<pre>
+/usr/local/lib/python2.7/dist-packages/matplotlib/font_manager.py:1282: UserWarning: findfont: Font family [u&apos;monospace&apos;] not found. Falling back to Bitstream Vera Sans
+  (prop.get_family(), self.defaultFamily[fontext]))
+
+</pre>
 </div>
 </div>
 
@@ -2065,7 +2075,7 @@ YII=
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[151]:
+In&nbsp;[12]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">pkg_hist</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pandas</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">pkg</span><span class="p">[</span><span class="n">c</span><span class="p">])</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -2081,12 +2091,12 @@ In&nbsp;[151]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[151]:</div>
+    Out[12]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdde1c722d0&gt;
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f83c3cb0c90&gt;
 </pre>
 
 </div>
@@ -2556,7 +2566,7 @@ AAAASUVORK5CYII=
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[152]:
+In&nbsp;[13]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">pandas</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">pkg_hist</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">),</span> <span class="n">diagonal</span><span class="o">=</span><span class="s">&#39;kde&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -2570,36 +2580,36 @@ In&nbsp;[152]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[152]:</div>
+    Out[13]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2c1881d0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2d348590&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2d477e90&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2d031390&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2d2c96d0&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde29d87390&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2b20f110&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2d251350&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2d0da5d0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2d1e4910&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2d393f90&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2d11c110&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde2cfb6f10&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fdde09b5b90&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde29ed7c10&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fdde060a990&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fdde0648ad0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fdde07a9950&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fdde092b5d0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fdde0776310&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fdde0ec0a50&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde29bab890&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde29b835d0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde29af6590&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fde29a6a2d0&gt;]], dtype=object)
+array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83c3c93190&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb7fc990&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb7d7a90&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb7b3790&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb734ad0&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb7ef0d0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb61d310&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb59f150&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb48bb90&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb40fc10&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb3f3990&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb376ad0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb3a1950&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb2685d0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb1ec310&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb14ea50&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb0d3890&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb0b95d0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb03a590&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bafbe2d0&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83baf2d210&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83baea4f10&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bae08e90&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bad89cd0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bae2e390&gt;]], dtype=object)
 </pre>
 
 </div>
