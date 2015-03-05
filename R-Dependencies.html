@@ -1537,7 +1537,7 @@ init_mathjax();
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[1]:
+In&nbsp;[42]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
@@ -1557,7 +1557,7 @@ In&nbsp;[1]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[43]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s">&#39;key == &quot;Package&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;value&#39;</span><span class="p">:</span> <span class="s">&#39;package&#39;</span><span class="p">})</span>
@@ -1572,7 +1572,7 @@ In&nbsp;[2]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[3]:
+In&nbsp;[44]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">github_pkg</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s">&#39;package&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s">&#39;key&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;value&#39;</span><span class="p">)[[</span><span class="s">&#39;Depends&#39;</span><span class="p">,</span> <span class="s">&#39;Imports&#39;</span><span class="p">]]</span>
@@ -1589,7 +1589,7 @@ In&nbsp;[3]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[45]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">cran_pkg</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
@@ -1603,7 +1603,7 @@ In&nbsp;[4]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[4]:</div>
+    Out[45]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 <div class="output_html rendered_html">
@@ -1662,7 +1662,7 @@ In&nbsp;[4]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[5]:
+In&nbsp;[46]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="c"># Add a flag to both data frame</span>
@@ -1683,7 +1683,7 @@ In&nbsp;[5]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[6]:
+In&nbsp;[47]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">parse_packages_list</span><span class="p">(</span><span class="n">pkg_list</span><span class="p">):</span>
@@ -1697,7 +1697,7 @@ In&nbsp;[6]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[7]:
+In&nbsp;[48]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">cran_pkg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&#39;zooimage&#39;</span><span class="p">][</span><span class="s">&#39;Depends&#39;</span><span class="p">]</span>
@@ -1730,7 +1730,7 @@ Result: [&apos;R&apos;, &apos;svMisc&apos;, &apos;svDialogs&apos;, &apos;mlearni
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[8]:
+In&nbsp;[49]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="c"># Replace every NaN in Depends and Imports by an empty string (i.e. an empty list of packages)</span>
@@ -1750,7 +1750,7 @@ In&nbsp;[8]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[9]:
+In&nbsp;[50]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">pkg</span><span class="p">[</span><span class="s">&#39;cran_dep&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pkg</span><span class="p">[</span><span class="s">&#39;dependencies&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">pkg</span><span class="p">[</span><span class="s">&#39;cran&#39;</span><span class="p">]</span>
@@ -1772,7 +1772,7 @@ In&nbsp;[9]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[10]:
+In&nbsp;[51]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
@@ -1786,7 +1786,7 @@ In&nbsp;[10]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[11]:
+In&nbsp;[52]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;cran_dep&#39;</span><span class="p">,</span> <span class="s">&#39;github_dep&#39;</span><span class="p">,</span> <span class="s">&#39;both_dep&#39;</span><span class="p">,</span> <span class="s">&#39;cran_only&#39;</span><span class="p">,</span> <span class="s">&#39;github_only&#39;</span><span class="p">]</span>
@@ -1802,24 +1802,14 @@ In&nbsp;[11]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[11]:</div>
+    Out[52]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f83c468c5d0&gt;
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc2d8ab8a90&gt;
 </pre>
 
-</div>
-</div>
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stderr">
-<pre>
-/usr/local/lib/python2.7/dist-packages/matplotlib/font_manager.py:1282: UserWarning: findfont: Font family [u&apos;monospace&apos;] not found. Falling back to Bitstream Vera Sans
-  (prop.get_family(), self.defaultFamily[fontext]))
-
-</pre>
 </div>
 </div>
 
@@ -2075,7 +2065,7 @@ YII=
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[12]:
+In&nbsp;[53]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">pkg_hist</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pandas</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">pkg</span><span class="p">[</span><span class="n">c</span><span class="p">])</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -2091,12 +2081,12 @@ In&nbsp;[12]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[12]:</div>
+    Out[53]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f83c3cb0c90&gt;
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc2d9086a50&gt;
 </pre>
 
 </div>
@@ -2566,7 +2556,7 @@ AAAASUVORK5CYII=
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[13]:
+In&nbsp;[54]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">pandas</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">pkg_hist</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">),</span> <span class="n">diagonal</span><span class="o">=</span><span class="s">&#39;kde&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -2580,36 +2570,36 @@ In&nbsp;[13]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[13]:</div>
+    Out[54]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83c3c93190&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb7fc990&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb7d7a90&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb7b3790&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb734ad0&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb7ef0d0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb61d310&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb59f150&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb48bb90&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb40fc10&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb3f3990&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb376ad0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb3a1950&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb2685d0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb1ec310&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb14ea50&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb0d3890&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb0b95d0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bb03a590&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bafbe2d0&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83baf2d210&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83baea4f10&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bae08e90&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bad89cd0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f83bae2e390&gt;]], dtype=object)
+array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc303f11690&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc3077530d0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc30577f990&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc2d8c75990&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc3074c87d0&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc307635510&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc3054cb5d0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc304106310&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc307273290&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc3055510d0&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc3073797d0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc3075a7e90&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc2d9087bd0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc307555350&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc2d8cfe190&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc2d8f2ce90&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc2d8eddf10&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc2d8d67c50&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc2d902aad0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc2da1d0810&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc2da21e790&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc2d8c325d0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc2d8e39250&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc303cfa3d0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fc303c6d110&gt;]], dtype=object)
 </pre>
 
 </div>
@@ -3651,6 +3641,223 @@ dnb0J4F4Tg/knJVbSYUQQgghhBAiwMmtpEIIIYQQQggR4GRiKIQQQgghhBABTiaGQgghhBBCCBHg
 ZGIohBBCCCGEEAFOJoZCCCGEEEIIEeBkYiiEEEIIIYQQAe7/A3hBX74OlmicAAAAAElFTkSuQmCC
 ">
 
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Paquets-ayant-une-d&#233;pendance-non-pr&#233;sente-sur-CRAN">Paquets ayant une d&#233;pendance non pr&#233;sente sur CRAN<a class="anchor-link" href="#Paquets-ayant-une-d&#233;pendance-non-pr&#233;sente-sur-CRAN">&#182;</a></h2>
+</div>
+
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[55]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Packages that are on CRAN</span>
+<span class="n">on_cran</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pkg</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s">&#39;cran == 1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c"># Add &#39;R&#39; and bundled libraries</span>
+<span class="n">on_cran</span> <span class="o">+=</span> <span class="p">(</span><span class="s">&#39;R MASS Matrix base boot class cluster codetools compiler datasets foreign grDevices &#39;</span> <span class="o">+</span>
+        <span class="s">&#39;graphics grid lattice manipulate methods mgcv nlme nnet parallel rpart rstudio&#39;</span> <span class="o">+</span>
+        <span class="s">&#39;spatial splines stats stats4 stringr survival tcltk tools translations utils&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[68]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># We want a true list of dependencies</span>
+<span class="k">def</span> <span class="nf">clean_dependencies</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="n">d1</span> <span class="o">=</span> <span class="n">parse_packages_list</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Depends&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Depends&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[]</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">parse_packages_list</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Imports&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Imports&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="s">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d1</span> <span class="o">+</span> <span class="n">d2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[69]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">pkg</span><span class="p">[</span><span class="s">&#39;dep_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pkg</span><span class="p">[[</span><span class="s">&#39;Depends&#39;</span><span class="p">,</span> <span class="s">&#39;Imports&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clean_dependencies</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[70]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Some cleaning</span>
+<span class="n">deps</span> <span class="o">=</span> <span class="n">pkg</span><span class="p">[[</span><span class="s">&#39;cran&#39;</span><span class="p">,</span> <span class="s">&#39;github&#39;</span><span class="p">,</span> <span class="s">&#39;dep_list&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">deps</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[70]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>key</th>
+      <th>cran</th>
+      <th>github</th>
+      <th>dep_list</th>
+    </tr>
+    <tr>
+      <th>package</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A3</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td>           xtable, pbapply</td>
+    </tr>
+    <tr>
+      <th>ABCExtremes</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> SpatialExtremes, combinat</td>
+    </tr>
+    <tr>
+      <th>ABCoptim</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td>                          </td>
+    </tr>
+    <tr>
+      <th>ABCp2</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td>                      MASS</td>
+    </tr>
+    <tr>
+      <th>ACCLMA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td>                          </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[71]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">deps</span><span class="p">[</span><span class="s">&#39;dep_outside_cran&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">deps</span><span class="p">[</span><span class="s">&#39;dep_list&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">([</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;, &#39;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">on_cran</span><span class="p">]))</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A short function to see which are the dependencies that are on CRAN and which are those that aren't on CRAN.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[72]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">_dependencies_not_in_cran</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">filter_</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Need on_cran global variable.</span>
+<span class="sd">    Set filter_ to True if you want only the dependencies that are NOT on cran.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">filter_</span><span class="p">:</span>
+        <span class="n">filter_</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">filter_</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">True</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">package_name</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="n">filter_</span><span class="p">,</span> 
+                            <span class="nb">zip</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">package_name</span><span class="p">][</span><span class="s">&#39;dep_list&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;, &#39;</span><span class="p">),</span> 
+                                <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">on_cran</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">package_name</span><span class="p">][</span><span class="s">&#39;dep_list&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;, &#39;</span><span class="p">))</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+            <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[90]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># _ = deps[deps[&#39;cran&#39;] == 1][deps[&#39;dep_outside_cran&#39;] &gt; 0].index</span>
+<span class="c"># map(lambda x: _dependencies_not_in_cran(deps, x, True), _)</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">deps</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">t</span><span class="p">[</span><span class="s">&#39;Missing on CRAN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;cran&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;dep_outside_cran&#39;</span><span class="p">]</span>
+<span class="n">t</span><span class="p">[</span><span class="s">&#39;Missing on GitHub&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;github&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;dep_outside_cran&#39;</span><span class="p">]</span>
+<span class="k">print</span> <span class="s">&#39;Packages having at least one missing dependency on CRAN&#39;</span>
+<span class="k">print</span> <span class="s">&#39;CRAN&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;cran&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;Missing on CRAN&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span> <span class="s">&#39;GitHub&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;github&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;Missing on GitHub&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Packages having at least one missing dependency on CRAN
+CRAN 7251 153
+GitHub 9326 908
+
+</pre>
 </div>
 </div>
 

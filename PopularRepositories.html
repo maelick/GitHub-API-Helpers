@@ -1536,7 +1536,7 @@ init_mathjax();
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[71]:
+In&nbsp;[1]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
@@ -1570,7 +1570,7 @@ In&nbsp;[71]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[72]:
+In&nbsp;[2]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="c"># This should take some time (expect 683425 items)</span>
@@ -1584,7 +1584,7 @@ In&nbsp;[72]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[73]:
+In&nbsp;[3]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="c"># Which ones are R packages?</span>
@@ -1607,7 +1607,7 @@ In&nbsp;[73]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[74]:
+In&nbsp;[4]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="c"># Aggregate by month</span>
@@ -1623,7 +1623,7 @@ In&nbsp;[74]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[75]:
+In&nbsp;[5]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">topmost</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
@@ -1637,6 +1637,2071 @@ In&nbsp;[75]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Il suffit maintenant d'utiliser la fonction <code>topmost</code> afin d'obtenir un classement des dépôts.</p>
 <p>Par exemple, <code>topmost(df_agg, '2014-01-01', 'forks')</code> pour obtenir la liste des 10 dépôts les plus forkés en fin janvier 2014. Il est facile de filtrer pour ne conserver que les packages. Par exemple, <code>topmost(df_agg[df_agg['package'] == True], '2014-01-01', 'forks')</code>.</p>
+<p>En particulier, voyons s'il y a des changements dans certains classements à des dates clés (pour rappel, les données d'une date correspondent aux données en fin de mois). Il y a essentiellement 3 moments clés dans l'activité des paquets : un <em>tout petit</em> pic en novembre/décembre 2013, et deux augmentation de l'activité en février/mars 2014 et octobre 2014.</p>
+<p>Les dates retenues sont donc :</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[25]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="n">dates_of_interest</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;2013-11-01&#39;</span><span class="p">,</span> <span class="s">&#39;2014-01-01&#39;</span><span class="p">,</span> <span class="s">&#39;2014-03-01&#39;</span><span class="p">,</span> <span class="s">&#39;2014-09-01&#39;</span><span class="p">,</span> <span class="s">&#39;2014-12-01&#39;</span><span class="p">]</span>
+<span class="n">criteria</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;forks&#39;</span><span class="p">,</span> <span class="s">&#39;watchers&#39;</span><span class="p">,</span> <span class="s">&#39;starred&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">_df</span> <span class="ow">in</span> <span class="p">[</span><span class="n">df_agg</span><span class="p">,</span> <span class="n">df_agg</span><span class="p">[</span><span class="n">df_agg</span><span class="p">[</span><span class="s">&#39;package&#39;</span><span class="p">]]]:</span>
+    <span class="k">for</span> <span class="n">criterion</span> <span class="ow">in</span> <span class="n">criteria</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;=====&#39;</span><span class="p">,</span> <span class="n">criterion</span>
+        <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">dates_of_interest</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;---&#39;</span><span class="p">,</span> <span class="n">date</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">topmost</span><span class="p">(</span><span class="n">_df</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="mi">5</span><span class="p">)[[</span><span class="s">&#39;package_name&#39;</span><span class="p">,</span> <span class="n">criterion</span><span class="p">]])</span>
+        
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+===== forks
+--- 2013-11-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>forks</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 177</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 135</td>
+    </tr>
+    <tr>
+      <th>systematicinvestor</th>
+      <th>SIT</th>
+      <td>      NaN</td>
+      <td>  83</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr-examples</th>
+      <td>      NaN</td>
+      <td>  78</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>adv-r</th>
+      <td>      NaN</td>
+      <td>  71</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-01-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>forks</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 195</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 149</td>
+    </tr>
+    <tr>
+      <th>adv-r</th>
+      <td>      NaN</td>
+      <td> 111</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 109</td>
+    </tr>
+    <tr>
+      <th>systematicinvestor</th>
+      <th>SIT</th>
+      <td>      NaN</td>
+      <td>  91</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-03-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>forks</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 222</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">hadley</th>
+      <th>ggplot2</th>
+      <td>  ggplot2</td>
+      <td> 171</td>
+    </tr>
+    <tr>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 156</td>
+    </tr>
+    <tr>
+      <th>adv-r</th>
+      <td>      NaN</td>
+      <td> 135</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 123</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-09-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>forks</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>swirldev</th>
+      <th>swirl_courses</th>
+      <td>   NaN</td>
+      <td> 700</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>httr</th>
+      <td>  httr</td>
+      <td> 383</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td> shiny</td>
+      <td> 317</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td> knitr</td>
+      <td> 314</td>
+    </tr>
+    <tr>
+      <th>genomicsclass</th>
+      <th>labs</th>
+      <td>   NaN</td>
+      <td> 270</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-12-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>forks</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>swirldev</th>
+      <th>swirl_courses</th>
+      <td>   NaN</td>
+      <td> 1228</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>httr</th>
+      <td>  httr</td>
+      <td>  517</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td> shiny</td>
+      <td>  403</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td> knitr</td>
+      <td>  352</td>
+    </tr>
+    <tr>
+      <th>genomicsclass</th>
+      <th>labs</th>
+      <td>   NaN</td>
+      <td>  287</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+===== watchers
+--- 2013-11-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>watchers</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 722</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 508</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>plyr</th>
+      <td>     plyr</td>
+      <td> 246</td>
+    </tr>
+    <tr>
+      <th>red</th>
+      <th>red</th>
+      <td>      NaN</td>
+      <td> 242</td>
+    </tr>
+    <tr>
+      <th>ramnathv</th>
+      <th>slidify</th>
+      <td>  slidify</td>
+      <td> 239</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-01-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>watchers</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 753</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 547</td>
+    </tr>
+    <tr>
+      <th>hyperq</th>
+      <th>hyperq</th>
+      <td>      NaN</td>
+      <td> 469</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 467</td>
+    </tr>
+    <tr>
+      <th>red</th>
+      <th>red</th>
+      <td>      NaN</td>
+      <td> 281</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-03-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>watchers</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>ggplot2</th>
+      <td>  ggplot2</td>
+      <td> 803</td>
+    </tr>
+    <tr>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 775</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 595</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 550</td>
+    </tr>
+    <tr>
+      <th>red</th>
+      <th>red</th>
+      <td>      NaN</td>
+      <td> 355</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-09-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>watchers</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 866</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 811</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 754</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 471</td>
+    </tr>
+    <tr>
+      <th>swirldev</th>
+      <th>swirl_courses</th>
+      <td>      NaN</td>
+      <td> 367</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-12-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>watchers</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>fivethirtyeight</th>
+      <th>data</th>
+      <td>      NaN</td>
+      <td> 998</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 942</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 915</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 817</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 591</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+===== starred
+--- 2013-11-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>starred</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 722</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 508</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>plyr</th>
+      <td>     plyr</td>
+      <td> 246</td>
+    </tr>
+    <tr>
+      <th>red</th>
+      <th>red</th>
+      <td>      NaN</td>
+      <td> 242</td>
+    </tr>
+    <tr>
+      <th>ramnathv</th>
+      <th>slidify</th>
+      <td>  slidify</td>
+      <td> 239</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-01-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>starred</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 753</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 547</td>
+    </tr>
+    <tr>
+      <th>hyperq</th>
+      <th>hyperq</th>
+      <td>      NaN</td>
+      <td> 469</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 467</td>
+    </tr>
+    <tr>
+      <th>red</th>
+      <th>red</th>
+      <td>      NaN</td>
+      <td> 281</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-03-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>starred</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>ggplot2</th>
+      <td>  ggplot2</td>
+      <td> 803</td>
+    </tr>
+    <tr>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 775</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 595</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 550</td>
+    </tr>
+    <tr>
+      <th>red</th>
+      <th>red</th>
+      <td>      NaN</td>
+      <td> 355</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-09-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>starred</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 866</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 811</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 754</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 471</td>
+    </tr>
+    <tr>
+      <th>swirldev</th>
+      <th>swirl_courses</th>
+      <td>      NaN</td>
+      <td> 367</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-12-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>starred</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>fivethirtyeight</th>
+      <th>data</th>
+      <td>      NaN</td>
+      <td> 998</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 942</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 915</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 817</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 591</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+===== forks
+--- 2013-11-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>forks</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 177</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 135</td>
+    </tr>
+    <tr>
+      <th>ramnathv</th>
+      <th>slidify</th>
+      <td>  slidify</td>
+      <td>  57</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>plyr</th>
+      <td>     plyr</td>
+      <td>  42</td>
+    </tr>
+    <tr>
+      <th>testthat</th>
+      <td> testthat</td>
+      <td>  37</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-01-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>forks</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 195</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 149</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 109</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>testthat</th>
+      <td> testthat</td>
+      <td>  46</td>
+    </tr>
+    <tr>
+      <th>plyr</th>
+      <td>     plyr</td>
+      <td>  43</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-03-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>forks</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 222</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>ggplot2</th>
+      <td>  ggplot2</td>
+      <td> 171</td>
+    </tr>
+    <tr>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 156</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 123</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>testthat</th>
+      <td> testthat</td>
+      <td>  54</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-09-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>forks</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>httr</th>
+      <td>     httr</td>
+      <td> 383</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 317</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 314</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 212</td>
+    </tr>
+    <tr>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 131</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-12-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>forks</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>httr</th>
+      <td>     httr</td>
+      <td> 517</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 403</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 352</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 239</td>
+    </tr>
+    <tr>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 199</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+===== watchers
+--- 2013-11-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>watchers</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td>        devtools</td>
+      <td> 722</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>           knitr</td>
+      <td> 508</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>plyr</th>
+      <td>            plyr</td>
+      <td> 246</td>
+    </tr>
+    <tr>
+      <th>ramnathv</th>
+      <th>slidify</th>
+      <td>         slidify</td>
+      <td> 239</td>
+    </tr>
+    <tr>
+      <th>johnmyleswhite</th>
+      <th>ProjectTemplate</th>
+      <td> ProjectTemplate</td>
+      <td> 208</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-01-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>watchers</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td>        devtools</td>
+      <td> 753</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>           knitr</td>
+      <td> 547</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>           shiny</td>
+      <td> 467</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>plyr</th>
+      <td>            plyr</td>
+      <td> 262</td>
+    </tr>
+    <tr>
+      <th>johnmyleswhite</th>
+      <th>ProjectTemplate</th>
+      <td> ProjectTemplate</td>
+      <td> 220</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-03-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>watchers</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>ggplot2</th>
+      <td>  ggplot2</td>
+      <td> 803</td>
+    </tr>
+    <tr>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 775</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 595</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 550</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 265</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-09-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>watchers</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 866</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 811</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 754</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 471</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>ggvis</th>
+      <td>    ggvis</td>
+      <td> 305</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-12-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>watchers</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 942</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 915</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 817</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 591</td>
+    </tr>
+    <tr>
+      <th>plyr</th>
+      <td>     plyr</td>
+      <td> 346</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+===== starred
+--- 2013-11-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>starred</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td>        devtools</td>
+      <td> 722</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>           knitr</td>
+      <td> 508</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>plyr</th>
+      <td>            plyr</td>
+      <td> 246</td>
+    </tr>
+    <tr>
+      <th>ramnathv</th>
+      <th>slidify</th>
+      <td>         slidify</td>
+      <td> 239</td>
+    </tr>
+    <tr>
+      <th>johnmyleswhite</th>
+      <th>ProjectTemplate</th>
+      <td> ProjectTemplate</td>
+      <td> 208</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-01-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>starred</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td>        devtools</td>
+      <td> 753</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>           knitr</td>
+      <td> 547</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>           shiny</td>
+      <td> 467</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>plyr</th>
+      <td>            plyr</td>
+      <td> 262</td>
+    </tr>
+    <tr>
+      <th>johnmyleswhite</th>
+      <th>ProjectTemplate</th>
+      <td> ProjectTemplate</td>
+      <td> 220</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-03-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>starred</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>ggplot2</th>
+      <td>  ggplot2</td>
+      <td> 803</td>
+    </tr>
+    <tr>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 775</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 595</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 550</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 265</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-09-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>starred</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 866</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 811</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 754</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 471</td>
+    </tr>
+    <tr>
+      <th>rstudio</th>
+      <th>ggvis</th>
+      <td>    ggvis</td>
+      <td> 305</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+--- 2014-12-01
+
+</pre>
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>package_name</th>
+      <th>starred</th>
+    </tr>
+    <tr>
+      <th>owner</th>
+      <th>repository</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rstudio</th>
+      <th>shiny</th>
+      <td>    shiny</td>
+      <td> 942</td>
+    </tr>
+    <tr>
+      <th>hadley</th>
+      <th>devtools</th>
+      <td> devtools</td>
+      <td> 915</td>
+    </tr>
+    <tr>
+      <th>yihui</th>
+      <th>knitr</th>
+      <td>    knitr</td>
+      <td> 817</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hadley</th>
+      <th>dplyr</th>
+      <td>    dplyr</td>
+      <td> 591</td>
+    </tr>
+    <tr>
+      <th>plyr</th>
+      <td>     plyr</td>
+      <td> 346</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 </body>
 </html>
