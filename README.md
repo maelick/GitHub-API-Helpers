@@ -1,6 +1,6 @@
 # GitHub-API-Helpers
 
-Provide several (simple) tools to help the use of GitHub API. 
+Provide several (simple) tools to help the use of GitHub API and some IPython Notebooks that underlined the step for our experiments.
 
 ## Installation
 
