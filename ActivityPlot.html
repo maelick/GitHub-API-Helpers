@@ -5581,7 +5581,7 @@ In&nbsp;[19]:
 
 
 <pre>
-&lt;matplotlib.legend.Legend at 0x7f9865a13290&gt;
+&lt;matplotlib.legend.Legend at 0x7fc5f51602d0&gt;
 </pre>
 
 </div>
@@ -7034,7 +7034,7 @@ TkSuQmCC
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[41]:
+In&nbsp;[20]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">hadley_repo_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_packages_events</span><span class="p">[</span><span class="n">df_packages_events</span><span class="p">[</span><span class="s">&#39;owner&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;hadley&#39;</span><span class="p">][</span><span class="s">&#39;repository&#39;</span><span class="p">])</span>
@@ -7047,7 +7047,7 @@ In&nbsp;[41]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[50]:
+In&nbsp;[21]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">df_packages_events</span><span class="p">[</span><span class="s">&#39;hadley_related&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_packages_events</span><span class="p">[</span><span class="s">&#39;repository&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">hadley_repo_names</span><span class="p">)</span>
@@ -7060,7 +7060,7 @@ In&nbsp;[50]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[52]:
+In&nbsp;[22]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">df_temp</span> <span class="o">=</span> <span class="n">df_packages_events</span><span class="p">[</span><span class="n">df_packages_events</span><span class="p">[</span><span class="s">&#39;owner&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;cran&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">&#39;1D&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="n">loffset</span><span class="o">=</span><span class="s">&#39;1d&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s">&#39;sum&#39;</span><span class="p">)</span>
@@ -8263,7 +8263,7 @@ hBBCHNP/Bz1LpRiMKzt/AAAAAElFTkSuQmCC
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[53]:
+In&nbsp;[23]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">_from_json_to_flat</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
@@ -8285,7 +8285,7 @@ In&nbsp;[53]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[54]:
+In&nbsp;[24]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">df_fork_events</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">events</span><span class="p">))</span>
@@ -8298,7 +8298,7 @@ In&nbsp;[54]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[56]:
+In&nbsp;[25]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">df_fork_events_all</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_fork_events</span><span class="p">,</span> <span class="n">df_packages_cran</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;owner&#39;</span><span class="p">,</span> <span class="s">&#39;repository&#39;</span><span class="p">))</span>
@@ -8318,7 +8318,7 @@ In&nbsp;[56]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[60]:
+In&nbsp;[26]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">df_temp</span> <span class="o">=</span> <span class="n">df_fork_events_all</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">&#39;1D&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="n">loffset</span><span class="o">=</span><span class="s">&#39;1d&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s">&#39;sum&#39;</span><span class="p">)</span>
@@ -9209,7 +9209,7 @@ ERGpY9TQExERERERqWP+H9hTMPUWMPHlAAAAAElFTkSuQmCC
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[70]:
+In&nbsp;[27]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">df_fork_events_all</span><span class="p">[</span><span class="n">df_fork_events_all</span><span class="p">[</span><span class="s">&#39;owner&#39;</span><span class="p">]</span><span class="o">==</span><span class="s">&#39;rdpeng&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">&#39;1D&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s">&#39;sum&#39;</span><span class="p">)[</span><span class="s">&#39;2014-03-01&#39;</span><span class="p">:</span><span class="s">&#39;2015-01-01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
@@ -9223,12 +9223,12 @@ In&nbsp;[70]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[70]:</div>
+    Out[27]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f985bc11a90&gt;
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc5edf38410&gt;
 </pre>
 
 </div>
