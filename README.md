@@ -1,10 +1,9 @@
-# GitHub-API-Helpers
+# Outils et analyses de dépôts GitHub
 
-Provide several (simple) tools to help the use of GitHub API and some IPython Notebooks that underlined the step for our experiments.
+Le présent dépôt propose un petit ensemble d'outils et d'analyses de dépôts GitHub, principalement orientés sur l'analyse des dépôts liés au langage R. 
 
-## Installation
-
-Simply clone the repository. We strongly advice you to use a virtual environmnent, like *virtualenvwrapper* or *pew*. Inside your virtual environment, simply use PIP: `pip install -r requirements.txt` 
+Les outils sont repris ci-dessous et consistent essentiellement en de petits décorateurs visant à simplifier l'accès à l'API de GitHub. 
+Les autres outils sont documentés dans les notebooks IPython présents sur le dépôt. 
 
 ## decorators.py
 
