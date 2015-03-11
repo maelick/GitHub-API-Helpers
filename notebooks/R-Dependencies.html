@@ -1543,8 +1543,8 @@ In&nbsp;[1]:
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
 
 <span class="c"># Load data from Maelick&#39;s files</span>
-<span class="n">github</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;github-description.csv&#39;</span><span class="p">)</span>
-<span class="n">cran</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;cran-description.csv&#39;</span><span class="p">)</span>
+<span class="n">github</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../data/github-description.csv&#39;</span><span class="p">)</span>
+<span class="n">cran</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../data/cran-description.csv&#39;</span><span class="p">)</span>
 
 <span class="c"># Drop packages belonging to &quot;cran&quot; user on GitHub</span>
 <span class="n">github</span> <span class="o">=</span> <span class="n">github</span><span class="p">[</span><span class="n">github</span><span class="p">[</span><span class="s">&#39;owner&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;cran&#39;</span><span class="p">]</span>

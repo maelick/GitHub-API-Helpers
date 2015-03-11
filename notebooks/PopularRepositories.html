@@ -1588,7 +1588,7 @@ In&nbsp;[4]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="c"># Which ones are R packages?</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;github-description.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s">&#39;key == &quot;Package&quot;&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../data/github-description.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s">&#39;key == &quot;Package&quot;&#39;</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">_</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;value&#39;</span><span class="p">:</span> <span class="s">&#39;package_name&#39;</span><span class="p">})</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">_</span><span class="p">[[</span><span class="s">&#39;owner&#39;</span><span class="p">,</span> <span class="s">&#39;repository&#39;</span><span class="p">,</span> <span class="s">&#39;package_name&#39;</span><span class="p">]]</span>
 
