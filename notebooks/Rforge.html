@@ -1554,7 +1554,7 @@ In&nbsp;[1]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[2]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">PKG_LIST_URL</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
@@ -1568,7 +1568,7 @@ In&nbsp;[4]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[22]:
+In&nbsp;[3]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">table</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;Current projects&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">findNext</span><span class="p">(</span><span class="s">&#39;table&#39;</span><span class="p">)</span>
@@ -1584,7 +1584,7 @@ In&nbsp;[22]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[23]:
+In&nbsp;[4]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">packages</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
@@ -1598,7 +1598,7 @@ In&nbsp;[23]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[23]:</div>
+    Out[4]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -1628,7 +1628,7 @@ In&nbsp;[23]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[50]:
+In&nbsp;[5]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1644,7 +1644,7 @@ In&nbsp;[50]:
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="c"># Si la ligne débute par des tabulations ou espace, continuation de la ligne précédente</span>
                 <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)):</span>
-                    <span class="n">d</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>   <span class="c"># key a encore la bonne valeur</span>
+                    <span class="n">d</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="s">&#39; &#39;</span> <span class="o">+</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>   <span class="c"># key a encore la bonne valeur</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">try</span><span class="p">:</span>
                         <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;:&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -1664,7 +1664,7 @@ In&nbsp;[50]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[51]:
+In&nbsp;[6]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">err404</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">packages</span><span class="p">)</span>
@@ -1678,7 +1678,7 @@ In&nbsp;[51]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[51]:</div>
+    Out[6]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -1696,7 +1696,7 @@ In&nbsp;[51]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[52]:
+In&nbsp;[14]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
