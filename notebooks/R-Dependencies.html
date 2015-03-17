@@ -1541,7 +1541,6 @@ In&nbsp;[1]:
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
 
-<span class="c"># Load data from Maelick&#39;s files</span>
 <span class="n">github</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../data/github-description.csv&#39;</span><span class="p">)</span>
 <span class="n">cran</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../data/cran-description.csv&#39;</span><span class="p">)</span>
 <span class="n">bioconductor</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../data/bioconductor_description.csv&#39;</span><span class="p">)</span>
@@ -1709,190 +1708,16 @@ In&nbsp;[7]:
 In&nbsp;[9]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&#39;-------&#39;</span><span class="p">,</span> <span class="n">name</span>
-    <span class="k">for</span> <span class="n">other</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&#39;--&#39;</span><span class="p">,</span> <span class="n">other</span>
-        <span class="k">print</span> <span class="s">&#39;Pkgs:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dependencies</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">other</span><span class="p">][</span><span class="s">&#39;packages&#39;</span><span class="p">])</span>
-        <span class="k">print</span> <span class="s">&#39;Deps:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dependencies</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">other</span><span class="p">][</span><span class="s">&#39;deps&#39;</span><span class="p">])</span>
-    <span class="k">print</span>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">display</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; dirty func to display the results using global variables &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;-------&#39;</span><span class="p">,</span> <span class="n">name</span>
+        <span class="k">for</span> <span class="n">other</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;--&#39;</span><span class="p">,</span> <span class="n">other</span>
+            <span class="k">print</span> <span class="s">&#39;Pkgs:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dependencies</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">other</span><span class="p">][</span><span class="s">&#39;packages&#39;</span><span class="p">])</span>
+            <span class="k">print</span> <span class="s">&#39;Deps:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dependencies</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">other</span><span class="p">][</span><span class="s">&#39;deps&#39;</span><span class="p">])</span>
+        <span class="k">print</span>
 </pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-------- R
--- R
-Pkgs: 0
-Deps: 0
--- cran
-Pkgs: 0
-Deps: 0
--- bioconductor
-Pkgs: 0
-Deps: 0
--- r-forge
-Pkgs: 0
-Deps: 0
--- rforge
-Pkgs: 0
-Deps: 0
--- github
-Pkgs: 0
-Deps: 0
--- Unknown
-Pkgs: 0
-Deps: 0
-
-------- cran
--- R
-Pkgs: 5154
-Deps: 9984
--- cran
-Pkgs: 4294
-Deps: 12118
--- bioconductor
-Pkgs: 127
-Deps: 212
--- r-forge
-Pkgs: 0
-Deps: 0
--- rforge
-Pkgs: 0
-Deps: 0
--- github
-Pkgs: 1
-Deps: 1
--- Unknown
-Pkgs: 35
-Deps: 46
-
-------- bioconductor
--- R
-Pkgs: 837
-Deps: 2450
--- cran
-Pkgs: 611
-Deps: 1835
--- bioconductor
-Pkgs: 674
-Deps: 2519
--- r-forge
-Pkgs: 0
-Deps: 0
--- rforge
-Pkgs: 0
-Deps: 0
--- github
-Pkgs: 4
-Deps: 4
--- Unknown
-Pkgs: 86
-Deps: 132
-
-------- r-forge
--- R
-Pkgs: 240
-Deps: 430
--- cran
-Pkgs: 220
-Deps: 620
--- bioconductor
-Pkgs: 14
-Deps: 37
--- r-forge
-Pkgs: 6
-Deps: 6
--- rforge
-Pkgs: 0
-Deps: 0
--- github
-Pkgs: 0
-Deps: 0
--- Unknown
-Pkgs: 9
-Deps: 16
-
-------- rforge
--- R
-Pkgs: 21
-Deps: 33
--- cran
-Pkgs: 11
-Deps: 32
--- bioconductor
-Pkgs: 1
-Deps: 2
--- r-forge
-Pkgs: 0
-Deps: 0
--- rforge
-Pkgs: 2
-Deps: 3
--- github
-Pkgs: 0
-Deps: 0
--- Unknown
-Pkgs: 0
-Deps: 0
-
-------- github
--- R
-Pkgs: 1257
-Deps: 2138
--- cran
-Pkgs: 1585
-Deps: 5683
--- bioconductor
-Pkgs: 183
-Deps: 526
--- r-forge
-Pkgs: 2
-Deps: 2
--- rforge
-Pkgs: 4
-Deps: 4
--- github
-Pkgs: 158
-Deps: 204
--- Unknown
-Pkgs: 123
-Deps: 148
-
-------- Unknown
--- R
-Pkgs: 0
-Deps: 0
--- cran
-Pkgs: 0
-Deps: 0
--- bioconductor
-Pkgs: 0
-Deps: 0
--- r-forge
-Pkgs: 0
-Deps: 0
--- rforge
-Pkgs: 0
-Deps: 0
--- github
-Pkgs: 0
-Deps: 0
--- Unknown
-Pkgs: 0
-Deps: 0
-
-
-</pre>
-</div>
-</div>
 
 </div>
 </div>
