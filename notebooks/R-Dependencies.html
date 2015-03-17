@@ -1536,7 +1536,7 @@ init_mathjax();
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[1]:
+In&nbsp;[2]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
@@ -1555,7 +1555,7 @@ In&nbsp;[1]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[3]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="c"># Drop packages belonging to &quot;cran&quot; user on GitHub</span>
@@ -1591,7 +1591,7 @@ In&nbsp;[2]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[3]:
+In&nbsp;[4]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">_</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;R MASS Matrix base boot class cluster codetools compiler datasets foreign grDevices &#39;</span> <span class="o">+</span>
@@ -1613,7 +1613,7 @@ In&nbsp;[3]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[5]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">parse_dependencies</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
@@ -1633,7 +1633,7 @@ In&nbsp;[4]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[5]:
+In&nbsp;[6]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">packages</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1663,7 +1663,7 @@ In&nbsp;[5]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[6]:
+In&nbsp;[7]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">dependencies</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1682,7 +1682,7 @@ In&nbsp;[6]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[7]:
+In&nbsp;[8]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">packages</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
@@ -1717,6 +1717,317 @@ In&nbsp;[9]:
             <span class="k">print</span> <span class="s">&#39;Pkgs:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dependencies</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">other</span><span class="p">][</span><span class="s">&#39;packages&#39;</span><span class="p">])</span>
             <span class="k">print</span> <span class="s">&#39;Deps:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dependencies</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">other</span><span class="p">][</span><span class="s">&#39;deps&#39;</span><span class="p">])</span>
         <span class="k">print</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[27]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">_expr1</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="p">:{</span> <span class="n">d</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">dv</span><span class="p">[</span><span class="s">&#39;packages&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">dv</span> <span class="ow">in</span> <span class="n">sv</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()</span> <span class="p">}</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">sv</span> <span class="ow">in</span> <span class="n">dependencies</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()}</span>
+<span class="n">_expr2</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="p">:{</span> <span class="n">d</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">dv</span><span class="p">[</span><span class="s">&#39;deps&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">dv</span> <span class="ow">in</span> <span class="n">sv</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()</span> <span class="p">}</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">sv</span> <span class="ow">in</span> <span class="n">dependencies</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()}</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[28]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">_expr1</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">&#39;index&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">_</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">_</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">_</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">][</span><span class="s">&#39;total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">_</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[28]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>R</th>
+      <th>Unknown</th>
+      <th>bioconductor</th>
+      <th>cran</th>
+      <th>github</th>
+      <th>r-forge</th>
+      <th>rforge</th>
+      <th>total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>R</th>
+      <td>    0</td>
+      <td>   0</td>
+      <td>   0</td>
+      <td>    0</td>
+      <td>   0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>    0</td>
+    </tr>
+    <tr>
+      <th>Unknown</th>
+      <td>    0</td>
+      <td>   0</td>
+      <td>   0</td>
+      <td>    0</td>
+      <td>   0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>    0</td>
+    </tr>
+    <tr>
+      <th>bioconductor</th>
+      <td>  837</td>
+      <td>  86</td>
+      <td> 674</td>
+      <td>  611</td>
+      <td>   4</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 2212</td>
+    </tr>
+    <tr>
+      <th>cran</th>
+      <td> 5154</td>
+      <td>  35</td>
+      <td> 127</td>
+      <td> 4294</td>
+      <td>   1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 9611</td>
+    </tr>
+    <tr>
+      <th>github</th>
+      <td> 1257</td>
+      <td> 123</td>
+      <td> 183</td>
+      <td> 1585</td>
+      <td> 158</td>
+      <td> 2</td>
+      <td> 4</td>
+      <td> 3312</td>
+    </tr>
+    <tr>
+      <th>r-forge</th>
+      <td>  240</td>
+      <td>   9</td>
+      <td>  14</td>
+      <td>  220</td>
+      <td>   0</td>
+      <td> 6</td>
+      <td> 0</td>
+      <td>  489</td>
+    </tr>
+    <tr>
+      <th>rforge</th>
+      <td>   21</td>
+      <td>   0</td>
+      <td>   1</td>
+      <td>   11</td>
+      <td>   0</td>
+      <td> 0</td>
+      <td> 2</td>
+      <td>   35</td>
+    </tr>
+    <tr>
+      <th>total</th>
+      <td> 7509</td>
+      <td> 253</td>
+      <td> 999</td>
+      <td> 6721</td>
+      <td> 163</td>
+      <td> 8</td>
+      <td> 6</td>
+      <td>  NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[29]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">_expr2</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">&#39;index&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">_</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">_</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">_</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">][</span><span class="s">&#39;total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">_</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[29]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>R</th>
+      <th>Unknown</th>
+      <th>bioconductor</th>
+      <th>cran</th>
+      <th>github</th>
+      <th>r-forge</th>
+      <th>rforge</th>
+      <th>total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>R</th>
+      <td>     0</td>
+      <td>   0</td>
+      <td>    0</td>
+      <td>     0</td>
+      <td>   0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>     0</td>
+    </tr>
+    <tr>
+      <th>Unknown</th>
+      <td>     0</td>
+      <td>   0</td>
+      <td>    0</td>
+      <td>     0</td>
+      <td>   0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>     0</td>
+    </tr>
+    <tr>
+      <th>bioconductor</th>
+      <td>  2450</td>
+      <td> 132</td>
+      <td> 2519</td>
+      <td>  1835</td>
+      <td>   4</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td>  6940</td>
+    </tr>
+    <tr>
+      <th>cran</th>
+      <td>  9984</td>
+      <td>  46</td>
+      <td>  212</td>
+      <td> 12118</td>
+      <td>   1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 22361</td>
+    </tr>
+    <tr>
+      <th>github</th>
+      <td>  2138</td>
+      <td> 148</td>
+      <td>  526</td>
+      <td>  5683</td>
+      <td> 204</td>
+      <td> 2</td>
+      <td> 4</td>
+      <td>  8705</td>
+    </tr>
+    <tr>
+      <th>r-forge</th>
+      <td>   430</td>
+      <td>  16</td>
+      <td>   37</td>
+      <td>   620</td>
+      <td>   0</td>
+      <td> 6</td>
+      <td> 0</td>
+      <td>  1109</td>
+    </tr>
+    <tr>
+      <th>rforge</th>
+      <td>    33</td>
+      <td>   0</td>
+      <td>    2</td>
+      <td>    32</td>
+      <td>   0</td>
+      <td> 0</td>
+      <td> 3</td>
+      <td>    70</td>
+    </tr>
+    <tr>
+      <th>total</th>
+      <td> 15035</td>
+      <td> 342</td>
+      <td> 3296</td>
+      <td> 20288</td>
+      <td> 209</td>
+      <td> 8</td>
+      <td> 7</td>
+      <td>   NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre>
 </pre></div>
 
 </div>
