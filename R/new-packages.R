@@ -108,6 +108,7 @@ setkey(github.creation, package)
 res <- github.creation[packages]
 setkey(res, package, version)
 
+# Number of releases that are now on Github
 table(!is.na(res$github))
 res[, on.github := mapply(function(github, cran) {
   !is.na(github) && github < cran
@@ -120,12 +121,14 @@ p9 <- PlotTS(res[first[, list(package, version)],
 p10 <- PlotTS(res[first[, list(package, version)],
                  list(value=nrow(.SD[.SD$on.github]) / .N), by="period2"][, list(date=period2, value)])
 
-x <- sapply(sort(unique(packages$period)),
-            function(p) length(github.creation[github < p & package %in% packages$package,
-                                               unique(package)]))
-y <- sapply(sort(unique(packages$period)),
-            function(p) length(packages[mtime < p, unique(package)]))
-p11 <- PlotTS(data.table(date=sort(unique(packages$period)), value=x / y))
+both <- sapply(sort(unique(packages$period)), function(p) {
+  length(github.creation[github < p & package %in% packages$package,
+                         unique(package)])
+})
+cran <- sapply(sort(unique(packages$period)), function(p) {
+  length(packages[mtime < p, unique(package)])
+})
+p11 <- PlotTS(data.table(date=sort(unique(packages$period)), value=both / cran))
 
 multiplot(p7, p9, p11, p8, p10, cols=2)
 
