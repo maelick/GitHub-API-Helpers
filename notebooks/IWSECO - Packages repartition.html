@@ -1697,7 +1697,7 @@ div#notebook {
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[33]:
+In&nbsp;[1]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1714,7 +1714,7 @@ In&nbsp;[33]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[34]:
+In&nbsp;[2]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1736,7 +1736,7 @@ In&nbsp;[34]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pour chacune de ces sources de données, nous allons conserver les dépendances ainsi que les auteurs et ajouter une étiquette pour la &quot;source&quot; de ce package (Github, CRAN, Bioconductor et R-Forge). Si un package est présent sur plusieurs sources, nous utiliserons les données prioritairement dans l&#39;ordre suivant : Cran, Bioconductor, R-Forge et enfin, Github.</p>
+<p>Pour chacune de ces sources de données, nous allons conserver les dépendances ainsi que les auteurs et ajouter une étiquette pour la &quot;source&quot; de ce package (Github, CRAN, Bioconductor et R-Forge). Si un package est présent sur plusieurs sources, nous utiliserons les données prioritairement dans l&#39;ordre suivant : Cran, Bioconductor, Github et enfin, R-Forge.</p>
 </div>
 </div>
 </div>
@@ -1753,7 +1753,7 @@ Il n&#39;y a pas grand chose à faire sur ce dataset, car il a été préparé d
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[35]:
+In&nbsp;[3]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1777,7 +1777,7 @@ In&nbsp;[35]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[36]:
+In&nbsp;[4]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1807,11 +1807,11 @@ In&nbsp;[36]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[37]:
+In&nbsp;[5]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">snapshot</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_csv</span><span class="p">(</span><span class="s">&#39;../data/cran-snapshot.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">snapshot</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_csv</span><span class="p">(</span><span class="s">&#39;../data/cran-snapshot-20150319.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="n">snapshot</span> <span class="o">=</span> <span class="n">snapshot</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;package&#39;</span><span class="p">:</span> <span class="s">&#39;Package&#39;</span><span class="p">})</span>
 <span class="n">cran</span> <span class="o">=</span> <span class="n">cran</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">snapshot</span><span class="p">[[</span><span class="s">&#39;Package&#39;</span><span class="p">]],</span> <span class="n">how</span><span class="o">=</span><span class="s">&#39;inner&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s">&#39;Package&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1833,7 +1833,7 @@ In&nbsp;[37]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[38]:
+In&nbsp;[6]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1857,7 +1857,7 @@ In&nbsp;[38]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[39]:
+In&nbsp;[7]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1881,7 +1881,7 @@ In&nbsp;[39]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[40]:
+In&nbsp;[8]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1908,7 +1908,7 @@ In&nbsp;[40]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[41]:
+In&nbsp;[9]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1917,7 +1917,7 @@ In&nbsp;[41]:
 <span class="n">bioconductor</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;Package&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verify_integrity</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">rforge</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;Package&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verify_integrity</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-<span class="n">packages</span> <span class="o">=</span> <span class="n">cran</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">bioconductor</span><span class="p">)</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">rforge</span><span class="p">)</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">github</span><span class="p">)</span>
+<span class="n">packages</span> <span class="o">=</span> <span class="n">cran</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">bioconductor</span><span class="p">)</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">github</span><span class="p">)</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">rforge</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1937,7 +1937,7 @@ In&nbsp;[41]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[42]:
+In&nbsp;[10]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1962,7 +1962,7 @@ In&nbsp;[42]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[43]:
+In&nbsp;[11]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1986,7 +1986,7 @@ In&nbsp;[43]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[44]:
+In&nbsp;[12]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2010,7 +2010,7 @@ In&nbsp;[44]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[45]:
+In&nbsp;[13]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2022,7 +2022,8 @@ In&nbsp;[45]:
 <span class="n">bioconductor_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">packages</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s">&#39;bioconductor == 1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="n">rforge_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">packages</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s">&#39;rforge == 1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
-<span class="n">venn3</span><span class="p">((</span><span class="n">github_set</span><span class="p">,</span> <span class="n">cran_set</span><span class="p">,</span> <span class="n">bioconductor_set</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;github&#39;</span><span class="p">,</span> <span class="s">&#39;cran&#39;</span><span class="p">,</span> <span class="s">&#39;bioconductor&#39;</span><span class="p">))</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">venn3</span><span class="p">((</span><span class="n">github_set</span><span class="p">,</span> <span class="n">cran_set</span><span class="p">,</span> <span class="n">bioconductor_set</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;github&#39;</span><span class="p">,</span> <span class="s">&#39;cran&#39;</span><span class="p">,</span> <span class="s">&#39;bioconductor&#39;</span><span class="p">))</span>
+<span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s">&#39;001&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">&#39;yellow&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2032,18 +2033,6 @@ In&nbsp;[45]:
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area"><div class="prompt output_prompt">
-    Out[45]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-&lt;matplotlib_venn._common.VennDiagram instance at 0x7f167da74440&gt;
-</pre>
-</div>
-
-</div>
 
 <div class="output_area"><div class="prompt"></div>
 
@@ -2058,11 +2047,11 @@ In&nbsp;[45]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[46]:
+In&nbsp;[14]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">venn3</span><span class="p">((</span><span class="n">github_set</span><span class="p">,</span> <span class="n">cran_set</span><span class="p">,</span> <span class="n">rforge_set</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;github&#39;</span><span class="p">,</span> <span class="s">&#39;cran&#39;</span><span class="p">,</span> <span class="s">&#39;r-forge&#39;</span><span class="p">))</span>
+<div class="highlight"><pre><span class="n">v</span> <span class="o">=</span> <span class="n">venn3</span><span class="p">((</span><span class="n">github_set</span><span class="p">,</span> <span class="n">cran_set</span><span class="p">,</span> <span class="n">rforge_set</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;github&#39;</span><span class="p">,</span> <span class="s">&#39;cran&#39;</span><span class="p">,</span> <span class="s">&#39;r-forge&#39;</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -2072,18 +2061,6 @@ In&nbsp;[46]:
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area"><div class="prompt output_prompt">
-    Out[46]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-&lt;matplotlib_venn._common.VennDiagram instance at 0x7f167bd5e908&gt;
-</pre>
-</div>
-
-</div>
 
 <div class="output_area"><div class="prompt"></div>
 
@@ -2098,11 +2075,12 @@ In&nbsp;[46]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[47]:
+In&nbsp;[15]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">venn3</span><span class="p">((</span><span class="n">github_set</span><span class="p">,</span> <span class="n">bioconductor_set</span><span class="p">,</span> <span class="n">rforge_set</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;github&#39;</span><span class="p">,</span> <span class="s">&#39;bioconductor&#39;</span><span class="p">,</span> <span class="s">&#39;r-forge&#39;</span><span class="p">))</span>
+<div class="highlight"><pre><span class="n">v</span> <span class="o">=</span> <span class="n">venn3</span><span class="p">((</span><span class="n">github_set</span><span class="p">,</span> <span class="n">bioconductor_set</span><span class="p">,</span> <span class="n">rforge_set</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;github&#39;</span><span class="p">,</span> <span class="s">&#39;bioconductor&#39;</span><span class="p">,</span> <span class="s">&#39;r-forge&#39;</span><span class="p">))</span>
+<span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s">&#39;010&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">&#39;yellow&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2112,18 +2090,6 @@ In&nbsp;[47]:
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area"><div class="prompt output_prompt">
-    Out[47]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-&lt;matplotlib_venn._common.VennDiagram instance at 0x7f166be679e0&gt;
-</pre>
-</div>
-
-</div>
 
 <div class="output_area"><div class="prompt"></div>
 
