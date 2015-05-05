@@ -45,13 +45,12 @@ def available(graph, package, sources):
     return not set(package_sources).isdisjoint(set(sources))
 
 
-def installable(graph, sources, ignored_packages=R_packages, check_self=True):
+def installable(graph, from_sources, sources, ignored_packages=R_packages):
     """
-    Return the packages in graph that are installable using the sources of 
+    Return the packages from `from_sources` in graph that are installable using the sources of 
     `sources`. `ignored_packages` contains a list of packages that are 
     considered to be available and that will be ignored during the check of 
     the dependencies. 
-    If `check_self` is True, check that current package is also in sources.
     """
 
     memory = {}
@@ -78,10 +77,16 @@ def installable(graph, sources, ignored_packages=R_packages, check_self=True):
         for source in graph[name].iterkeys():
             # Get dependencies
             dependencies = graph[name][source]['Dependencies']
+            dependencies = filter(lambda p: p not in ignored_packages, dependencies)
+
+            # No dependency, installable!
+            if len(dependencies) == 0:
+                memory[name] = True
+                return True
 
             # The dependencies must be available AND installable
             # Check availability first as it is cheaper
-            if all((available(graph, dep, sources) for dep in dependencies if dep not in ignored_packages)):
+            if all((available(graph, dep, sources) for dep in dependencies)):
                 # Check installability
                 if all((is_installable(dep) for dep in dependencies)):
                     # Ok, return True
@@ -92,8 +97,17 @@ def installable(graph, sources, ignored_packages=R_packages, check_self=True):
         return False
 
     results = []
+
     for name in graph.iterkeys():
-        if (not check_self or available(graph, name, sources)) and is_installable(name):
-            results.append(name)
+        for from_source in from_sources:
+            if from_source in graph[name].iterkeys():
+                installable = True
+                for dependency in graph[name][from_source]['Dependencies']:
+                    if not is_installable(dependency):
+                        installable = False
+                        break
+                if installable:
+                    results.append(name)
+                    break
     return results        
 
