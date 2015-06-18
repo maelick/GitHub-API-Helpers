@@ -10,3 +10,4 @@ scipy
 beautifulsoup
 matplotlib-venn
 networkx
+lifelines
